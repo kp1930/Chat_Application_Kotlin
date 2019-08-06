@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@android:drawable/star_on"
+            android:id="@+id/imageViewChatFrom"
+            app:civ_border_width="4dp"
+            app:civ_border_color="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"/>
+
+    <TextView
+            android:text="This is my message which will convert in multiple lines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewChatFrom"
+            android:maxWidth="240dp"
+            android:textColor="@android:color/black"
+            android:padding="16dp"
+            android:background="@drawable/bg_rounded"
+            app:layout_constraintStart_toEndOf="@+id/imageViewChatFrom"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/imageViewChatFrom"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
