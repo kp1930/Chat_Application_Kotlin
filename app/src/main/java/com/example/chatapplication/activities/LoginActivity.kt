@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        textViewSignUp.setOnClickListener{
+        textViewSignUp.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
@@ -34,15 +34,18 @@ class LoginActivity : AppCompatActivity() {
         }
         if (etPasswordL.isEmpty()) {
             editTextPasswordL.requestFocus()
-            editTextEmailL.error = "Please enter valid password"
+            editTextPasswordL.error = "Please enter valid password"
         }
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(etEmailL, etPasswordL)
-            .addOnCompleteListener {
-                if (!it.isSuccessful) return@addOnCompleteListener
-                val intent = Intent(this@LoginActivity, LatestMessageActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this@LoginActivity, LatestMessageActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@LoginActivity, "Please enter valid email or password", Toast.LENGTH_LONG).show()
+                }
             }
             .addOnFailureListener {
                 Toast.makeText(this@LoginActivity, "Please enter valid email or password", Toast.LENGTH_LONG).show()
